@@ -30,7 +30,7 @@ class FormController extends Controller
             'no_telp' => $validated["no_telp"],
         ]);
 
-        return redirect()->back()->with('success', 'Data berhasil dikirim. Terima kasih!');
+        return view('succesfully');
     }
 
     public function export()
