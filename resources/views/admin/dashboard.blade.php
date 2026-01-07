@@ -205,6 +205,10 @@
         .wa-link:hover {
             text-decoration: underline;
         }
+        .aksi {
+            display: flex;
+            gap: 1rem;
+        }
         
         /* Responsive */
         @media (max-width: 768px) {
@@ -284,24 +288,36 @@
             <th>Organisasi</th>
             <th>Daerah</th>
             <th>Nomor WA</th>
+            <th>Aksi</th>
         </tr>
     </thead>
-    <tbody>
-        @forelse ($data as $d)
-        <tr>
-            <td>{{ $d->name }}</td>
-            <td>{{ $d->organization }}</td>
-            <td>{{ $d->daerah }}</td>
-            <td>{{ $d->no_telp }}</td>
-        </tr>
-        @empty
-        <tr>
-            <td colspan="4" style="text-align: center; padding: 20px;">
-                Data tidak ada
-            </td>
-        </tr>
-        @endforelse
-    </tbody>
+    <tbody id="data-table-body">
+    @forelse ($data as $d)
+    <tr>
+        <td>{{ $d->name }}</td>
+        <td>{{ $d->organization }}</td>
+        <td>{{ $d->daerah }}</td>
+        <td>{{ $d->no_telp }}</td>
+        <td class="aksi">
+            <a href="/form/edit/{{ $d->id }}" style="color: var(--primary); text-decoration: none; font-weight: 600;">
+                <i class="fas fa-edit"></i> Edit
+            </a>
+
+            <form action="/form/destroy/{{ $d->id }}" method="POST" onsubmit="return confirm('Yakin hapus data?')">
+                @csrf
+                @method('DELETE')
+                <button type="submit" style="background: none; border: none; color: #ef4444; cursor: pointer; font-weight: 600; font-family: inherit; display: flex; align-items: center; gap: 4px;">
+                    <i class="fas fa-trash"></i> Hapus
+                </button>
+            </form>
+        </td>
+    </tr>
+    @empty
+    <tr>
+        <td colspan="5" style="text-align: center; padding: 20px;">Data tidak ada</td>
+    </tr>
+    @endforelse
+</tbody>
 </table>
                 </div>
             </div>
