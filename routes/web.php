@@ -18,6 +18,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 // 3. Route Khusus Admin (DIPROTEKSI)
 Route::middleware(['auth'])->group(function () {
 
+    // CRUD
+    Route::get('/form/edit/{id}', [FormController::class, 'edit']);
+    Route::put('/form/update/{id}', [FormController::class, 'update']);
+    Route::delete('/form/destroy/{id}', [FormController::class, 'destroy']);
+
     // Dashboard Admin
     Route::get('/admin/dashboard', function () {
         // Cek lagi biar aman, cuma admin yang boleh masuk sini
