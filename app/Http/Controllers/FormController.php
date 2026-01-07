@@ -20,7 +20,7 @@ class FormController extends Controller
             'name' => 'required|string|max:255',
             'organization' => 'required|string|max:255',
             'daerah' => 'nullable|string|max:255',
-            'no_telp' => '|nullable|string|max:20',
+            'no_telp' => 'nullable|string|max:20',
         ]);
 
         Form::create([
@@ -29,6 +29,8 @@ class FormController extends Controller
             'daerah' => $validated["daerah"],
             'no_telp' => $validated["no_telp"],
         ]);
+
+        return redirect()->back()->with('success', 'Data berhasil dikirim. Terima kasih!');
     }
 
     public function export()

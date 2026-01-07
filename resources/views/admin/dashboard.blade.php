@@ -309,7 +309,7 @@
         
         <!-- Footer -->
         <div style="text-align: center; color: #64748b; font-size: 0.9rem; padding-top: 20px; border-top: 1px solid var(--border);">
-            Dashboard Admin Panel • {{ date('d M Y') }}
+            PPLG SMKS Muhammadiyah 1 Genteng • {{ date('d M Y') }}
         </div>
     </div>
 </body>

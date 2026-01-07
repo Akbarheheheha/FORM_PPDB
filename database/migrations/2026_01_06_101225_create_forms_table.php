@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('organization');
             $table->string('daerah');
-            $table->string('no_telp')->nullable()->change();
+            $table->string('no_telp')->nullable();
             $table->timestamps();
         });
     }
@@ -27,4 +27,19 @@ return new class extends Migration {
     {
         Schema::dropIfExists('forms');
     }
+
+
+public function update(Request $request, $id)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'organization' => 'required|string|max:255',
+        'daerah' => 'nullable|string|max:255',
+        'no_telp' => 'nullable|string|max:20',
+    ]);
+    $form = Form::findOrFail($id);
+    $form->update($validated);
+    return redirect()->back()->with('success', 'Data berhasil diperbarui.');
+}
+
 };

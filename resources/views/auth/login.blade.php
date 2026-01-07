@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="card">
-        <h2 style="text-align: center">Login Staff</h2>
+        <h2 style="text-align: center">Login Admin</h2>
         
         @if ($errors->any())
             <div class="error">
